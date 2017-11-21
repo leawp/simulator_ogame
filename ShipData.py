@@ -1,3 +1,9 @@
+LONG_NAME = 0
+HEALTH = 1
+SHIELD = 2
+ATTACK = 3
+ATTACK_FACTORS = 4
+
 class ShipData(object):
     """class containing ship info"""
 
@@ -14,11 +20,11 @@ class ShipData(object):
 
     def add_fast_attack_data(self, shortname, enemy, factor):
         if shortname in self.ships:
-            self.ships[shortname][4][enemy] = factor
+            self.ships[shortname][ATTACK_FACTORS][enemy] = factor
         else:
             Exception("Ship does not exist in the ship data table!")
 
-    def get_data(shortname):
+    def get_data(self, shortname):
         if shortname in self.ships:
             return self.ships[shortname]
         return None
