@@ -30,8 +30,8 @@ class Fleet(object):
 
         # for i in ships_to_remove:
             # print(str(self.fleet[i]) + " has died!")
-        print(self.name + " - straty: " + str(len(ships_to_remove)))
         self.fleet = np.delete(self.fleet, ships_to_remove)
+        return self.name + " - straty: " + str(len(ships_to_remove))
 
     def print_fleet(self):
         for s in self.fleet:
