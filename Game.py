@@ -51,6 +51,41 @@ def run_sim(xd):
         # f2.print_fleet()
     app.setTextArea("output", output)
 
+wiersz = 0
+kolumna1 = 0
+kolumna2 = 0
+app.startPanedFrame("floty1")
+app.addLabel("label1", "Flota 1",wiersz,kolumna1)
+app.addLabelEntry("mt1")
+app.addLabelEntry("dt1")
+app.addLabelEntry("lm1")
+app.addLabelEntry("cm1")
+app.addLabelEntry("kr1")
+app.addLabelEntry("ow1")
+app.addLabelEntry("sk1")
+app.addLabelEntry("re1")
+app.addLabelEntry("ss1")
+app.addLabelEntry("b1")
+app.addLabelEntry("n1")
+app.addLabelEntry("gs1")
+app.addLabelEntry("p1")
+
+app.startPanedFrame("floty2")
+app.addLabel("label2", "Flota 2",wiersz,kolumna2)
+app.addLabelEntry("mt2")
+app.addLabelEntry("dt2")
+app.addLabelEntry("lm2")
+app.addLabelEntry("cm2")
+app.addLabelEntry("kr2")
+app.addLabelEntry("ow2")
+app.addLabelEntry("sk2")
+app.addLabelEntry("re2")
+app.addLabelEntry("ss2")
+app.addLabelEntry("b2")
+app.addLabelEntry("n2")
+app.addLabelEntry("gs2")
+app.addLabelEntry("p2")
+app.stopPanedFrame()
 
 app.startPanedFrame("p1")
 app.setStretch("none")
@@ -64,7 +99,7 @@ app.setEntry("flota_2", "flota_2")
 
 app.addLabelSpinBoxRange("Dlugosc rundy", 1, 10)
 app.setSpinBox("Dlugosc rundy", 6)
-
+app.stopPanedFrame()
 
 # start additional panes inside initial pane
 app.startPanedFrame("p2")
