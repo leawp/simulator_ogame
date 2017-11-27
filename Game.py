@@ -1,17 +1,19 @@
 
 
 from ShipData import ShipData
+from Ship import Ship
 from Loader import Loader
 from Fleet import Fleet
 from appJar import gui
 
-app = gui("Ogame Simulator GUI", "900x600")
+app = gui("Ogame Simulator GUI", "1200x600")
 
 sd = ShipData()
 Loader.load_ship_data(sd)
 Loader.load_fast_attack_data(sd)
 f1 = Fleet(sd, "flota_1")
 f2 = Fleet(sd, "flota_2")
+TYPY = ["mt", "dt", "lm", "cm", "kr", "ow", "sk", "re", "ss", "b", "n", "gs", "p"]
 
 
 def load_ship_data(xd):
@@ -20,15 +22,44 @@ def load_ship_data(xd):
     Loader.load_ship_data(sd)
     Loader.load_fast_attack_data(sd)
     global f1
+    for typ in TYPY:
+        app.setEntry(typ + "1", 0)
+        app.setEntry(typ + "2", 0)
+
     f1 = Fleet(sd, "flota_1")
+    for ship in f1.fleet:
+        vstr = app.getEntry(ship.shortname + "1")
+        v = int(0 if vstr == '' else vstr)
+        app.setEntry(ship.shortname + "1", v + 1)
     global f2
     f2 = Fleet(sd, "flota_2")
+    for ship in f2.fleet:
+        vstr = app.getEntry(ship.shortname + "2")
+        v = int(0 if vstr == '' else vstr)
+        app.setEntry(ship.shortname + "2", v + 1)
     app.clearAllTextAreas()
+
+
+def load_ship_data_from_fields(xd):
+        global f1
+        global f2
+        global sd
+
+        f1.fleet = []
+        f2.fleet = []
+        for typ in TYPY:
+            v1 = int(app.getEntry(typ + "1"))
+            for i in range(v1):
+                f1.fleet.append(Ship(sd, typ))
+            v2 = int(app.getEntry(typ + "2"))
+            for i in range(v2):
+                f2.fleet.append(Ship(sd, typ))
 
 
 def run_sim(xd):
     app.clearAllTextAreas()
     output = ""
+
     for i in range(int(app.getSpinBox("Dlugosc rundy"))):
         if len(f1.fleet) == 0 or len(f2.fleet) == 0:
             break
@@ -51,11 +82,12 @@ def run_sim(xd):
         # f2.print_fleet()
     app.setTextArea("output", output)
 
+
 wiersz = 0
 kolumna1 = 0
 kolumna2 = 0
 app.startPanedFrame("floty1")
-app.addLabel("label1", "Flota 1",wiersz,kolumna1)
+app.addLabel("label1", "Flota 1", wiersz, kolumna1)
 app.addLabelEntry("mt1")
 app.addLabelEntry("dt1")
 app.addLabelEntry("lm1")
@@ -71,7 +103,7 @@ app.addLabelEntry("gs1")
 app.addLabelEntry("p1")
 
 app.startPanedFrame("floty2")
-app.addLabel("label2", "Flota 2",wiersz,kolumna2)
+app.addLabel("label2", "Flota 2", wiersz, kolumna2)
 app.addLabelEntry("mt2")
 app.addLabelEntry("dt2")
 app.addLabelEntry("lm2")
@@ -104,7 +136,8 @@ app.stopPanedFrame()
 # start additional panes inside initial pane
 app.startPanedFrame("p2")
 app.addLabel("l2", "Akcje")
-app.addButton("Load ship data", load_ship_data)
+app.addButton("Load ship data from file", load_ship_data)
+app.addButton("Load ship data", load_ship_data_from_fields)
 app.addButton("Run simulation", run_sim)
 app.addButton("Exit", app.stop)
 app.stopPanedFrame()

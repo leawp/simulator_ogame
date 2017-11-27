@@ -16,11 +16,11 @@ class Fleet(object):
 
     def attack(self, other):
         for s in self.fleet:
-            target = other.get_random_target()
-            s.do_attack(target)
+            s.do_attack(other)
 
 
     def evaluate_fleet(self):
+        # TODO: szansa na zniszczenie jesli hp <= 30%
         ships_to_remove = []
         for i in range(len(self.fleet)):
             if self.fleet[i].health <= 0:
@@ -28,8 +28,6 @@ class Fleet(object):
             else:
                 self.fleet[i].shield = self.fleet[i].data[SHIELD]
 
-        # for i in ships_to_remove:
-            # print(str(self.fleet[i]) + " has died!")
         self.fleet = np.delete(self.fleet, ships_to_remove)
         return self.name + " - straty: " + str(len(ships_to_remove))
 

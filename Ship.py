@@ -20,9 +20,11 @@ class Ship(object):
     def get_attack_chance(self, target_shortname):
         return 1 - 1.0 / self.data[ATTACK_FACTORS][target_shortname]
 
-    def do_attack(self, target):
-
+    def do_attack(self, other):
         while(True):
+            target = other.get_random_target()
+            if(0.01*target.shield > self.attack):
+                return
             if target.shield > 0:
                 target.shield -= self.attack
                 if target.shield < 0:
