@@ -1,4 +1,4 @@
-
+#coding: utf-8
 
 from ShipData import ShipData
 from Ship import Ship
@@ -131,14 +131,32 @@ app.setEntry("flota_2", "flota_2")
 
 app.addLabelSpinBoxRange("Dlugosc rundy", 1, 10)
 app.setSpinBox("Dlugosc rundy", 6)
+app.setStretch("both")
+app.addTextArea("test")
+app.setTextArea("test", """skrót nazwa punkty_strukturalne osłona atak
+mt mały_transporter 400 10 5
+dt duży_transporter 1200 25 5
+lm lekki_myśliwiec 400 10 50
+cm ciężki_myśliwiec 1000 25 150
+kr krążownik 2700 50 400
+ow okręt_wojenny 6000 200 1000
+sk statek_kolonizacyjny 3000 100 50
+re recykler 1600 10 1
+ss sonda_szpiegowska 100 0 0
+b bombowiec 7500 500 1000
+n niszczyciel 11000 500 2000
+gs gwiazda_śmierci 900000 50000 200000
+p pancernik 7000 400 700
+
+""")
 app.stopPanedFrame()
 
 # start additional panes inside initial pane
 app.startPanedFrame("p2")
 app.addLabel("l2", "Akcje")
-app.addButton("Load ship data from file", load_ship_data)
-app.addButton("Load ship data", load_ship_data_from_fields)
-app.addButton("Run simulation", run_sim)
+app.addButton("wczytaj z pliku", load_ship_data)
+app.addButton("przygotuj pojedynek", load_ship_data_from_fields)
+app.addButton("uruchom symulacje", run_sim)
 app.addButton("Exit", app.stop)
 app.stopPanedFrame()
 
