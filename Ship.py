@@ -25,6 +25,10 @@ class Ship(object):
             target = other.get_random_target()
             if(0.01*target.shield > self.attack):
                 return
+            hp_left = target.health / float(target.data[HEALTH])
+            if hp_left < 0.3 and random() > hp_left:
+                target.health = 0 # wybuch
+                return
             if target.shield > 0:
                 target.shield -= self.attack
                 if target.shield < 0:
