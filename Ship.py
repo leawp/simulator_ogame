@@ -14,7 +14,7 @@ class Ship(object):
         self.shield = self.data[SHIELD]
         self.attack = self.data[ATTACK]
 
-    def __str__(self):
+    def __repr__(self):
         return self.longname + "\t " + str(self.health) + "\t " + str(self.shield) + "\t " + str(self.attack)
 
     def get_attack_chance(self, target_shortname):

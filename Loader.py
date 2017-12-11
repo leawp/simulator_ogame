@@ -1,12 +1,16 @@
-
+"""
+This module contains an utility class Loader which has only static methods
+"""
 import Ship as s
 import ShipData as sd
+
 
 class Loader(object):
     """class for loading game data from text files"""
 
     @staticmethod
     def load_ship_data(shipdata):
+        """loads the ship data defined in dane_statkow.txt"""
         f = open('./data/dane_statkow.txt')
         lines = f.readlines()[1:]
         for line in lines:
@@ -14,6 +18,7 @@ class Loader(object):
 
     @staticmethod
     def load_fast_attack_data(shipdata):
+        """loads the ship fast attack data defined in dane_statkow.txt"""
         f = open('./data/szybkie_dziala.txt')
         lines = f.readlines()
         ship_names = lines[0].strip().split(" ")[1:]
@@ -28,6 +33,7 @@ class Loader(object):
 
     @staticmethod
     def load_fleet(shipdata, fleetname):
+        """loads the ship data defined in /data/{fleetname}/.txt"""
         f = open('./data/' + fleetname + '.txt')
         lines = f.readlines()
         lines = lines[1:]
