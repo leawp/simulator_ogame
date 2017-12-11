@@ -1,11 +1,3 @@
-"""
-ShipData module contains definitions for the ShipData class and a few constants
-LONG_NAME = 0
-HEALTH = 1
-SHIELD = 2
-ATTACK = 3
-ATTACK_FACTORS = 4
-"""
 LONG_NAME = 0
 HEALTH = 1
 SHIELD = 2

@@ -1,6 +1,3 @@
-"""
-This module contains an utility class Loader which has only static methods
-"""
 import Ship as s
 import ShipData as sd
 
