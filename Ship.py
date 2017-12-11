@@ -6,6 +6,7 @@ class Ship(object):
     """Main ship class for all ingame ship types"""
 
     def __init__(self, shipdata, shortname):
+        """initializes the ship properties using the ShipData object"""
         super(Ship, self).__init__()
         self.data = shipdata.get_data(shortname)
         self.shortname = shortname
@@ -18,9 +19,11 @@ class Ship(object):
         return self.longname + "\t " + str(self.health) + "\t " + str(self.shield) + "\t " + str(self.attack)
 
     def get_attack_chance(self, target_shortname):
+        """returns additional attack chance based on the target name"""
         return 1 - 1.0 / self.data[ATTACK_FACTORS][target_shortname]
 
     def do_attack(self, other):
+        """main attack function, @param Ship other"""
         while(True):
             target = other.get_random_target()
             if(0.01*target.shield > self.attack):
